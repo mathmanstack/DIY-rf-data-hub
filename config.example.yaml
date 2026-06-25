@@ -1,0 +1,66 @@
+project:
+  name: "RF Data Hub"
+  data_dir: "data"
+  csv_file: "readings.csv"
+
+# Weather uses Open-Meteo. Edit this to your real location.
+location:
+  name: "county, state"
+  latitude:  2323323
+  longitude: 2323232
+
+rf:
+  enabled: true
+  mock: false
+
+  # Choose: monitor or sweep
+  mode: "monitor"
+
+  # For RTL-SDR relative power measurements.
+  # These are not calibrated dBm readings. They are useful for trends.
+  gain: "auto"
+  span_hz: 200000
+  bin_hz: 25000
+  dwell_s: 2
+
+  monitor:
+    label: "NOAA Weather Radio"
+    frequency_hz: 162550000
+    duration_s: 300
+    interval_s: 10
+
+  sweep:
+    repeats: 1
+    frequencies:
+      - label: "FM Broadcast Example"
+        frequency_hz: 100100000
+      - label: "NOAA Weather Radio"
+        frequency_hz: 162550000
+      - label: "APRS / 2m Ham"
+        frequency_hz: 144390000
+      - label: "ISM 915 MHz"
+        frequency_hz: 915000000
+      - label: "ADS-B 1090 MHz"
+        frequency_hz: 1090000000
+
+sensors:
+  - id: "sparkfun_pressure"
+    type: "sparkfun_micropressure"
+    enabled: true
+
+  - id: "open_meteo_weather"
+    type: "open_meteo_current"
+    enabled: true
+    interval_s: 300
+
+  - id: "pi_cpu_temp"
+    type: "pi_cpu_temp"
+    enabled: true
+
+  - id: "pi_disk"
+    type: "system_disk"
+    enabled: true
+
+  - id: "pi_uptime"
+    type: "system_uptime"
+    enabled: true

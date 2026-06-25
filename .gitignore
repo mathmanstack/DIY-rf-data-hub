@@ -1,0 +1,23 @@
+cat > .gitignore <<'EOF'
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+
+# Local data
+data/
+*.csv
+*.sqlite
+*.db
+
+# Local config / secrets / location-specific settings
+config.yaml
+.env
+
+# OS/editor
+.DS_Store
+.vscode/
+.idea/
+EOF
